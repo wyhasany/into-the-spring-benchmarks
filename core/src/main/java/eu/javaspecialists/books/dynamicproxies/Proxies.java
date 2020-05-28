@@ -54,6 +54,42 @@ public final class Proxies {
   }
   // end::castProxy()[]
 
+  // tag::castProxy()[]
+  /**
+   * @param intf    The interface to implement and cast to
+   * @param handler InvocationHandler for all methods
+   */
+  @SuppressWarnings("unchecked")
+  public static <S> S castProxyBoostOn(Class<? super S> intf,
+                                InvocationHandler handler) {
+    Objects.requireNonNull(intf, "intf==null");
+    Objects.requireNonNull(handler, "handler==null");
+    return MethodTurboBooster.boostOn(
+        (S) Proxy.newProxyInstance(
+            intf.getClassLoader(),
+            new Class<?>[] {intf},
+            new ExceptionUnwrappingInvocationHandler(handler)));
+  }
+  // end::castProxy()[]
+
+  // tag::castProxy()[]
+  /**
+   * @param intf    The interface to implement and cast to
+   * @param handler InvocationHandler for all methods
+   */
+  @SuppressWarnings("unchecked")
+  public static <S> S castProxyBoostOff(Class<? super S> intf,
+                                        InvocationHandler handler) {
+    Objects.requireNonNull(intf, "intf==null");
+    Objects.requireNonNull(handler, "handler==null");
+    return MethodTurboBooster.boostOff(
+        (S) Proxy.newProxyInstance(
+            intf.getClassLoader(),
+            new Class<?>[] {intf},
+            new ExceptionUnwrappingInvocationHandler(handler)));
+  }
+  // end::castProxy()[]
+
   // tag::simpleProxy()[]
   public static <S> S simpleProxy(
       Class<? super S> subjectInterface, S subject) {

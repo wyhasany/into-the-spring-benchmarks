@@ -38,8 +38,21 @@ public final class MethodTurboBooster {
           MethodTurboBooster.class.getName() + ".disabled") ?
           new BoosterOff() : new BoosterOn();
 
+  private final static BoosterOn boosterOn = new BoosterOn();
+  private final static BoosterOff boosterOff = new BoosterOff();
+
   public static <E> E boost(E proxy) {
     return BOOSTER.turboBoost(proxy);
+  }
+
+  public static <E> E boostOn(E proxy) {
+    System.out.println("Booster: " + BOOSTER.getClass().getSimpleName());
+    return boosterOn.turboBoost(proxy);
+  }
+
+  public static <E> E boostOff(E proxy) {
+    System.out.println("Booster: " + BOOSTER.getClass().getSimpleName());
+    return boosterOff.turboBoost(proxy);
   }
 
   public static Method boost(Method method) {
@@ -54,10 +67,6 @@ public final class MethodTurboBooster {
   private static class BoosterOn implements Booster {
     @Override
     public <E> E turboBoost(E proxy) {
-      if (!(proxy instanceof Proxy))
-        throw new IllegalArgumentException(
-            "Can only turboboost instances of Proxy"
-        );
       try {
         for (var field : proxy.getClass().getDeclaredFields()) {
           if (field.getType() == Method.class) {
@@ -85,10 +94,6 @@ public final class MethodTurboBooster {
   private static class BoosterOff implements Booster {
     @Override
     public <E> E turboBoost(E proxy) {
-      if (!(proxy instanceof Proxy))
-        throw new IllegalArgumentException(
-            "Can only turboboost instances of Proxy"
-        );
       return proxy;
     }
     @Override
