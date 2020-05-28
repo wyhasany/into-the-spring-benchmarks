@@ -46,12 +46,10 @@ public final class MethodTurboBooster {
   }
 
   public static <E> E boostOn(E proxy) {
-    System.out.println("Booster: " + BOOSTER.getClass().getSimpleName());
     return boosterOn.turboBoost(proxy);
   }
 
   public static <E> E boostOff(E proxy) {
-    System.out.println("Booster: " + BOOSTER.getClass().getSimpleName());
     return boosterOff.turboBoost(proxy);
   }
 
