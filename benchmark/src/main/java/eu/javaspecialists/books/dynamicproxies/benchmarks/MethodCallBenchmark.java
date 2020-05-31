@@ -38,97 +38,97 @@ import java.util.concurrent.*;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
 public class MethodCallBenchmark {
-//  // direct call to RealWorker
-//  private final RealWorker realWorker = new RealWorker();
-//  // direct call to CgLibWorker
-//  private final CgLibWorker cgLibWorker = new CgLibWorker();
-//
-//  // static proxies
-//  private final Worker staticProxy = new ProxyWorker();
-//
-//  //   dynamic proxies
-//  private final Worker dynamicProxyDirectCallIncrement =
-//      Proxies.castProxy(Worker.class,
-//          (proxy, method, args) -> realWorker.increment());
-//  private final Worker dynamicProxyDirectCallConsumeCPU =
-//      Proxies.castProxy(Worker.class,
-//          (proxy, method, args) -> {
-//            realWorker.consumeCPU();
-//            return null;
-//          });
-//  private final Worker dynamicProxyReflectiveCallBoostOff =
-//      Proxies.castProxyBoostOff(Worker.class,
-//          (proxy, method, args) ->
-//              method.invoke(realWorker, args));
-//  private final Worker dynamicProxyReflectiveCallBoostOn =
-//      Proxies.castProxyBoostOn(Worker.class,
-//          (proxy, method, args) ->
-//              method.invoke(realWorker, args));
-//  private final CgLibWorker cgligProxyReflectiveCallBoostOff =
-//      CglibProxies.castCglibProxy(CgLibWorker.class,
-//          (proxy, method, args) ->
-//              method.invoke(cgLibWorker, args));
-//  private final CgLibWorker cgligProxyReflectiveCallBoostOn =
-//      CglibProxies.castCglibProxy(CgLibWorker.class,
-//          (proxy, method, args) ->
-//              method.invoke(cgLibWorker, args));
+  // direct call to RealWorker
+  private final RealWorker realWorker = new RealWorker();
+  // direct call to CgLibWorker
+  private final CgLibWorker cgLibWorker = new CgLibWorker();
 
-//  @Benchmark
-//  public long directCallIncrement() {
-//    return realWorker.increment();
-//  }
-//  @Benchmark
-//  public long staticProxyIncrement() {
-//    return staticProxy.increment();
-//  }
-//  @Benchmark
-//  public long dynamicProxyDirectCallIncrement() {
-//    return dynamicProxyDirectCallIncrement.increment();
-//  }
-//  @Benchmark
-//  public long dynamicProxyReflectiveCallIncrementBoostOff() {
-//    return dynamicProxyReflectiveCallBoostOff.increment();
-//  }
-//  @Benchmark
-//  public long dynamicProxyReflectiveCallIncrementBoostOn() {
-//    return dynamicProxyReflectiveCallBoostOn.increment();
-//  }
-//  @Benchmark
-//  public long cgligProxyReflectiveCallReflectiveCallIncrementBoostOff() {
-//    return cgligProxyReflectiveCallBoostOff.increment();
-//  }
-//  @Benchmark
-//  public long cgligProxyReflectiveCallReflectiveCallIncrementBoostOn() {
-//    return cgligProxyReflectiveCallBoostOn.increment();
-//  }
-//
-//  @Benchmark
-//  public void directCallConsumeCPU() {
-//    realWorker.consumeCPU();
-//  }
-//  @Benchmark
-//  public void staticProxyConsumeCPU() {
-//    staticProxy.consumeCPU();
-//  }
-//  @Benchmark
-//  public void dynamicProxyDirectCallConsumeCPU() {
-//    dynamicProxyDirectCallConsumeCPU.consumeCPU();
-//  }
-//  @Benchmark
-//  public void dynamicProxyReflectiveCallConsumeCPUBoostOff() {
-//    dynamicProxyReflectiveCallBoostOff.consumeCPU();
-//  }
-//  @Benchmark
-//  public void dynamicProxyReflectiveCallConsumeCPUBoostOn() {
-//    dynamicProxyReflectiveCallBoostOn.consumeCPU();
-//  }
-//  @Benchmark
-//  public void cgligProxyReflectiveCallReflectiveCallConsumeCPUBoostOff() {
-//    cgligProxyReflectiveCallBoostOff.consumeCPU();
-//  }
-//  @Benchmark
-//  public void cgligProxyReflectiveCallReflectiveCallConsumeCPUBoostOn() {
-//    cgligProxyReflectiveCallBoostOn.consumeCPU();
-//  }
+  // static proxies
+  private final Worker staticProxy = new ProxyWorker();
+
+  //   dynamic proxies
+  private final Worker dynamicProxyDirectCallIncrement =
+      Proxies.castProxy(Worker.class,
+          (proxy, method, args) -> realWorker.increment());
+  private final Worker dynamicProxyDirectCallConsumeCPU =
+      Proxies.castProxy(Worker.class,
+          (proxy, method, args) -> {
+            realWorker.consumeCPU();
+            return null;
+          });
+  private final Worker dynamicProxyReflectiveCallBoostOff =
+      Proxies.castProxyBoostOff(Worker.class,
+          (proxy, method, args) ->
+              method.invoke(realWorker, args));
+  private final Worker dynamicProxyReflectiveCallBoostOn =
+      Proxies.castProxyBoostOn(Worker.class,
+          (proxy, method, args) ->
+              method.invoke(realWorker, args));
+  private final CgLibWorker cgligProxyReflectiveCallBoostOff =
+      CglibProxies.castCglibProxy(CgLibWorker.class,
+          (proxy, method, args) ->
+              method.invoke(cgLibWorker, args));
+  private final CgLibWorker cgligProxyReflectiveCallBoostOn =
+      CglibProxies.castCglibProxy(CgLibWorker.class,
+          (proxy, method, args) ->
+              method.invoke(cgLibWorker, args));
+
+  @Benchmark
+  public long directCallIncrement() {
+    return realWorker.increment();
+  }
+  @Benchmark
+  public long staticProxyIncrement() {
+    return staticProxy.increment();
+  }
+  @Benchmark
+  public long dynamicProxyDirectCallIncrement() {
+    return dynamicProxyDirectCallIncrement.increment();
+  }
+  @Benchmark
+  public long dynamicProxyReflectiveCallIncrementBoostOff() {
+    return dynamicProxyReflectiveCallBoostOff.increment();
+  }
+  @Benchmark
+  public long dynamicProxyReflectiveCallIncrementBoostOn() {
+    return dynamicProxyReflectiveCallBoostOn.increment();
+  }
+  @Benchmark
+  public long cgligProxyReflectiveCallReflectiveCallIncrementBoostOff() {
+    return cgligProxyReflectiveCallBoostOff.increment();
+  }
+  @Benchmark
+  public long cgligProxyReflectiveCallReflectiveCallIncrementBoostOn() {
+    return cgligProxyReflectiveCallBoostOn.increment();
+  }
+
+  @Benchmark
+  public void directCallConsumeCPU() {
+    realWorker.consumeCPU();
+  }
+  @Benchmark
+  public void staticProxyConsumeCPU() {
+    staticProxy.consumeCPU();
+  }
+  @Benchmark
+  public void dynamicProxyDirectCallConsumeCPU() {
+    dynamicProxyDirectCallConsumeCPU.consumeCPU();
+  }
+  @Benchmark
+  public void dynamicProxyReflectiveCallConsumeCPUBoostOff() {
+    dynamicProxyReflectiveCallBoostOff.consumeCPU();
+  }
+  @Benchmark
+  public void dynamicProxyReflectiveCallConsumeCPUBoostOn() {
+    dynamicProxyReflectiveCallBoostOn.consumeCPU();
+  }
+  @Benchmark
+  public void cgligProxyReflectiveCallReflectiveCallConsumeCPUBoostOff() {
+    cgligProxyReflectiveCallBoostOff.consumeCPU();
+  }
+  @Benchmark
+  public void cgligProxyReflectiveCallReflectiveCallConsumeCPUBoostOn() {
+    cgligProxyReflectiveCallBoostOn.consumeCPU();
+  }
 }
 // end::listing[]
